@@ -1,8 +1,9 @@
 package main.tree.api.resources;
 
-import main.tree.api.model.Node;
-import main.tree.api.services.ServiceNode;
 import lombok.extern.slf4j.Slf4j;
+import main.tree.api.model.Node;
+import main.tree.api.model.UpdateNode;
+import main.tree.api.services.ServiceNode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,18 @@ public class ResourcesNode {
 
     @PostMapping
     public ResponseEntity create(@Valid @RequestBody Node node){
+        Long id = Long.valueOf(1);
+        Optional<Node> validate1 = serviceNode.findById(Long.valueOf(node.getParentId()));
+        Optional<Node> validate2 = serviceNode.findById(Long.valueOf(1));
+
+        if ((node.getId() == node.getParentId()) && !validate2.isPresent()) {
+            node.setParentId(Long.valueOf(0));
+        } else {
+            if (!validate1.isPresent()) {
+                node.setParentId(id);
+            }
+        }
+
         return ResponseEntity.ok(serviceNode.save(node));
     }
 
@@ -38,7 +51,7 @@ public class ResourcesNode {
         Optional<List<Node>> stock = serviceNode.findByParentId(parentId);
         if (!stock.isPresent()){
             log( "ParentId" + parentId + " is not existed");
-            ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(stock.get());
     }
@@ -51,14 +64,17 @@ public class ResourcesNode {
         }
         return ResponseEntity.ok(stock.get());
     }
-    //Verificar porque não está atualizando o nó
-    @PutMapping
-    public ResponseEntity<Node> update(@PathVariable Long id, @Valid @RequestBody Node node){
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UpdateNode> update(@PathVariable Long id, @Valid @RequestBody UpdateNode node) {
         if (!serviceNode.findById(id).isPresent()){
-            log("ID" +id + " is not existed");
-            ResponseEntity.badRequest().build();
+            String log = "ID" + id + " is not existed";
+            return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.ok(serviceNode.save(node));
+        node = serviceNode.update(id, node);
+
+        return ResponseEntity.ok(node);
     }
 
     @PostMapping("/{id}")
