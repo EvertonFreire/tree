@@ -1,15 +1,17 @@
 package main.tree.api.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Data
 @SequenceGenerator(name = "id", initialValue = 1, allocationSize = 5000)
-public class Node implements Serializable {
+public class Node {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id")
     private long id;
@@ -22,9 +24,16 @@ public class Node implements Serializable {
 
     private String description;
 
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany
+    @JsonSerialize
+    @Transient
+    private Optional<List<Node>> children;
+
     @Column(nullable = false)
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean hasChildren;
+
 
     public long getId() {
         return id;
@@ -73,4 +82,31 @@ public class Node implements Serializable {
     public void setHasChildren(Boolean hasChildren) {
         this.hasChildren = hasChildren;
     }
+
+    public Optional<List<Node>> getChildren() {
+        return children;
+    }
+
+    public void setChildren(Optional<List<Node>> children) {
+        this.children = children;
+    }
+
+    /*
+    public String getChildren() {
+        return children;
+    }
+
+    public void setChildren(String children) {
+        String a="Optional[Node";
+        String b= "][";
+        String c = "\\(";
+        String d = "\\)";
+        children = RegExUtils.replaceAll(children, Pattern.quote(a),"\\[");
+        children = RegExUtils.replaceAll(children,c,"\\[{");
+        children = RegExUtils.replaceAll(children,d,"\\}]");
+        children = RegExUtils.replaceAll(children,Pattern.quote(b),",");
+        children.replaceAll(a,b);
+        System.out.println(children);
+        this.children = children;
+    } */
 }

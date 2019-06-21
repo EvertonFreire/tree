@@ -23,16 +23,11 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="de79f416-d463-4189-bd60-99edb69b457f">
-        <schema name="mysql" object-types="table, view, function, procedure" />
-        <schema name="restapi" object-types="table, view, function, dataset trigger, column, constraint, index, procedure" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="de79f416-d463-4189-bd60-99edb69b457f">
-      <console name="Tree" type="STANDARD" schema="" session="Main">select * from restapi.node;</console>
+      <console name="Tree" type="STANDARD" schema="" session="Main"><![CDATA[select * from restapi.node;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
