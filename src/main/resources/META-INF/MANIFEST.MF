@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Class-Path: spring-boot-autoconfigure-2.1.5.RELEASE.jar spring-aspects
+ -5.1.7.RELEASE.jar spring-core-5.1.7.RELEASE.jar jboss-logging-3.3.2.
+ Final.jar spring-boot-starter-web-2.1.5.RELEASE.jar log4j-to-slf4j-2.
+ 11.2.jar dom4j-2.1.1.jar tomcat-embed-el-9.0.19.jar jaxb-api-2.3.1.ja
+ r log4j-api-2.11.2.jar spring-boot-starter-2.1.5.RELEASE.jar tomcat-e
+ mbed-core-9.0.19.jar spring-webmvc-5.1.7.RELEASE.jar spring-tx-5.1.7.
+ RELEASE.jar spring-data-jpa-2.1.8.RELEASE.jar HikariCP-3.2.0.jar jack
+ son-module-parameter-names-2.9.8.jar snakeyaml-1.23.jar jackson-annot
+ ations-2.9.0.jar javassist-3.23.2-GA.jar freemarker-2.3.28.jar javax.
+ persistence-api-2.2.jar spring-context-5.1.7.RELEASE.jar spring-web-5
+ .1.7.RELEASE.jar javax.activation-api-1.2.0.jar spring-context-suppor
+ t-5.1.7.RELEASE.jar hibernate-validator-6.0.16.Final.jar spring-boot-
+ starter-tomcat-2.1.5.RELEASE.jar spring-boot-2.1.5.RELEASE.jar common
+ s-lang3-3.8.1.jar aspectjweaver-1.9.4.jar spring-beans-5.1.7.RELEASE.
+ jar validation-api-2.0.1.Final.jar spring-orm-5.1.7.RELEASE.jar lombo
+ k-1.18.8.jar spring-data-commons-2.1.8.RELEASE.jar spring-boot-starte
+ r-data-jpa-2.1.5.RELEASE.jar spring-boot-starter-freemarker-2.1.5.REL
+ EASE.jar spring-boot-starter-logging-2.1.5.RELEASE.jar spring-boot-st
+ arter-jdbc-2.1.5.RELEASE.jar antlr-2.7.7.jar spring-expression-5.1.7.
+ RELEASE.jar javax.transaction-api-1.3.jar spring-jcl-5.1.7.RELEASE.ja
+ r spring-jdbc-5.1.7.RELEASE.jar jackson-datatype-jsr310-2.9.8.jar jav
+ ax.annotation-api-1.3.2.jar spring-aop-5.1.7.RELEASE.jar jandex-2.0.5
+ .Final.jar logback-classic-1.2.3.jar tomcat-embed-websocket-9.0.19.ja
+ r jackson-databind-2.9.8.jar slf4j-api-1.7.26.jar spring-boot-starter
+ -json-2.1.5.RELEASE.jar hibernate-core-5.3.10.Final.jar logback-core-
+ 1.2.3.jar mysql-connector-java-8.0.16.jar jackson-core-2.9.8.jar byte
+ -buddy-1.9.12.jar jul-to-slf4j-1.7.26.jar hibernate-commons-annotatio
+ ns-5.0.4.Final.jar jackson-datatype-jdk8-2.9.8.jar classmate-1.4.0.ja
+ r spring-boot-starter-aop-2.1.5.RELEASE.jar
+Main-Class: main.tree.api.tree
+
