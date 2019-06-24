@@ -42,3 +42,15 @@ Para realizar as operações de CRUD de cada um dos nós, segue-se abaixo o form
 * Apresentação de toda a árvore - Requisição GET com endereço: http://localhost:8080/node
   
   *Ex: Method= GET, URL= http://localhost:8080/node*
+
+
+# Links
+
+Para acessar aos files Jar e WAR, é preciso baixar os arquivos pelo GDrive com o link abaixo:
+
+https://drive.google.com/open?id=1u5pNPu76xiD8pmWQGCOIjf5Y5b7bzxBJ
+
+Para utilizar diretamente as opções rest da API utilize o site:
+www.doler.com.br:8080/
+
+
