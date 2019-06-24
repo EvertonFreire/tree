@@ -26,7 +26,7 @@ public class ResourcesNode {
     }
 
     @GetMapping
-    public ResponseEntity<List<Node>> findAll() throws IOException {
+    public ResponseEntity<Optional<Node>> findAll() throws IOException {
         return ResponseEntity.ok(serviceNode.findAll());
     }
 
@@ -46,17 +46,16 @@ public class ResourcesNode {
         return ResponseEntity.ok(serviceNode.save(node));
     }
 
-    @GetMapping("/parent/{parentId}")
+    @GetMapping("/{parentId}")
     public ResponseEntity<Optional<List<Node>>> findByParentId(@PathVariable Long parentId) throws IOException {
         Optional<List<Node>> stock = serviceNode.findByParentId(parentId);
         if (!stock.isPresent()){
             log( "ParentId" + parentId + " is not existed");
             return ResponseEntity.badRequest().build();
         }
-//        return ResponseEntity.ok(stock.get());
         return ResponseEntity.ok(stock);
     }
-    @GetMapping("/{id}")
+
     public ResponseEntity<Node> findById(@PathVariable Long id){
         Optional<Node> stock = serviceNode.findById(id);
         if (!stock.isPresent()){
@@ -73,7 +72,6 @@ public class ResourcesNode {
             String log = "ID" + node.getId() + " is not existed";
             return ResponseEntity.badRequest().build();
         }
-//        node = serviceNode.update(node);
         return ResponseEntity.ok(serviceNode.save(node));
     }
 

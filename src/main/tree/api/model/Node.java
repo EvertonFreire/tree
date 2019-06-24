@@ -1,6 +1,7 @@
 package main.tree.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import org.hibernate.annotations.Type;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Data
 @SequenceGenerator(name = "id", initialValue = 1, allocationSize = 5000)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Node {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id")

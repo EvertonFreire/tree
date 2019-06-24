@@ -1,6 +1,5 @@
 package main.tree.api.services;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import main.tree.api.model.Node;
 import main.tree.api.model.PostNode;
 import main.tree.api.model.UpdateNode;
@@ -21,9 +20,9 @@ public class ServiceNode {
         this.repositoryProduct = repositoryProduct;
     }
 
-    public List<Node> findAll() throws IOException {
+    public Optional<Node> findAll() throws IOException {
         concatChildrens(repositoryProduct.getOne(Long.valueOf(1)));
-        return repositoryProduct.findAll();
+        return repositoryProduct.findById(Long.valueOf(1));
     }
 
     public Optional<Node> findById(Long id){
@@ -71,11 +70,9 @@ public class ServiceNode {
         repositoryProduct.deleteById(id);
     }
 
-    @JsonIgnoreProperties({"hasChildren"})
     public Optional<List<Node>> findByParentId(Long parentId) throws IOException {
         Node stock = repositoryProduct.getOne(parentId);
-        concatChildrens(stock);
-        return repositoryProduct.findAllByParentId(stock.getParentId());
+        return repositoryProduct.findAllByParentId(stock.getId());
     }
 
     public void concatChildrens(@NotNull Node stock) throws IOException {
@@ -87,12 +84,15 @@ public class ServiceNode {
                     concatChildrens(repositoryProduct.getOne(nodes.get().getId()));
                 }else{
                     nodes.get().setChildren(repositoryProduct.findAllByParentId(nodes.get().getId()));
+                    nodes.get().setHasChildren(null);
                 }
             }
         }else{
             stock.setChildren(repositoryProduct.findAllByParentId(stock.getId()));
+            stock.setHasChildren(null);
         }
         stock.setChildren(repositoryProduct.findAllByParentId(stock.getId()));
+        stock.setHasChildren(null);
     }
 
     public void updateHasChildrenPost(@NotNull Node stock){
