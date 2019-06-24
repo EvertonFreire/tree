@@ -104,22 +104,27 @@ public class ServiceNode {
     }
 
     public void updateHasChildrenDelete(@NotNull Node stock) throws IOException {
-        Node fatherNodeUpdateHasChildren = repositoryProduct.getOne(stock.getParentId());
-        Optional<List<Node>> father = findByParentId(Long.valueOf(stock.getParentId()));
-        int fatherSize = father.get().size();
-
-        if(fatherNodeUpdateHasChildren.getParentId()!=0){
-            if(fatherSize>1){
-
-            }else{
-                fatherNodeUpdateHasChildren.setHasChildren(false);
-            }
-        }else{ }
-
-        if(stock.getHasChildren()==true){
-            deleteSubNodes(stock);
+        if(stock.getParentId()==0){
+            
         }
-}
+        else{
+            Node fatherNodeUpdateHasChildren = repositoryProduct.getOne(stock.getParentId());
+            Optional<List<Node>> father = findByParentId(Long.valueOf(stock.getParentId()));
+            int fatherSize = father.get().size();
+
+            if(fatherNodeUpdateHasChildren.getParentId()!=0){
+                if(fatherSize>1){
+
+                }else{
+                    fatherNodeUpdateHasChildren.setHasChildren(false);
+                }
+            }else{ }
+
+            if(stock.getHasChildren()==true){
+                deleteSubNodes(stock);
+            }
+        }
+    }
 
     public void deleteSubNodes(Node stock) throws IOException {
         if (stock.getHasChildren()==true){
